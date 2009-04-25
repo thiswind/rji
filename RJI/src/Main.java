@@ -5,13 +5,8 @@ import rji.p3dx.P3DXStallBumpers;
 import rji.sensors.Sensors;
 import rji.subsumption.Arbitrator;
 import rji.subsumption.Behavior;
-import app.AvoidCloseBack;
-import app.AvoidCloseFront;
-import app.GoStraight;
+import app.GoStraightConstVelocity;
 import app.Idle;
-import app.SlowDown;
-import app.TurnLeft;
-import app.TurnRight;
 
 /**.Main
  * created on 2009-4-22	上午01:35:14
@@ -38,12 +33,7 @@ public class Main {
 		
 		Behavior[] behaviors = {
 				new Idle(),
-				new GoStraight(700),
-				new SlowDown(1000),
-				new TurnRight(),
-				new TurnLeft(),
-				new AvoidCloseFront(300),
-				new AvoidCloseBack(300)
+				new GoStraightConstVelocity(1000)
 				
 		};
 		Arbitrator arbi = new Arbitrator(behaviors, sensors, agent);

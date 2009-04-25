@@ -3,6 +3,7 @@
  */
 package rji.p3dx;
 
+import rji.robot.Size;
 import rji.sensors.AbstractSonars;
 
 /**
@@ -10,7 +11,14 @@ import rji.sensors.AbstractSonars;
  *
  */
 public class P3DXSonars extends AbstractSonars {
-
+	
+	protected final double[] ROBOT_SONAR_SWING_OFFSET = {
+		  210.0,	188.0,	185.0,	184.0,	184.0,	185.0,	188.0,	210.0,
+		  180.0,	122.0,	104.0,	100.0,	100.0,	104.0,	122.0,	180.0
+	};// mm
+	
+	private Size size = new P3DXSize();
+	
 	/**
 	 * @param num
 	 * @param hitRange
@@ -63,6 +71,23 @@ public class P3DXSonars extends AbstractSonars {
 		}
 		
 		return sb.toString();
+	}
+
+	/* (non-Javadoc)
+	 * @see rji.sensors.Sonars#getSwingOffset(int)
+	 */
+	public double getSwingOffset(int num) {
+		return this.ROBOT_SONAR_SWING_OFFSET[num];
+	}
+
+	/* (non-Javadoc)
+	 * @see rji.sensors.Sonars#getDistFrontCenter(int)
+	 */
+	public double getDistFrontCenter(int num) {
+		double dist = this.getMeasurement(num);
+		double d = this.getSwingOffset(num);
+		
+		return dist + this.size.getSwingRadius() - d;
 	}
 
 }

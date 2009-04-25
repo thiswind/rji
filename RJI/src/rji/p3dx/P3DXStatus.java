@@ -4,6 +4,7 @@
 package rji.p3dx;
 
 import rji.math.Point2D;
+import rji.robot.Size;
 import rji.robot.Status;
 
 /**
@@ -18,6 +19,8 @@ public class P3DXStatus implements Status {
 	private double y;
 	private double rotationalVelocity;
 	private double translationalVelocity;
+	
+	private P3DXSize size = new P3DXSize();
 
 	/*
 	 * (non-Javadoc)
@@ -87,5 +90,12 @@ public class P3DXStatus implements Status {
 
 	public void setTranslationalVelocity(double translationalVelocity) {
 		this.translationalVelocity = translationalVelocity;
+	}
+
+	/* (non-Javadoc)
+	 * @see rji.robot.Status#getSize()
+	 */
+	public Size getSize() {
+		return this.size;
 	}
 }

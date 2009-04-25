@@ -19,4 +19,6 @@ public interface Status {
 	double getOdometer();
 	
 	Point2D getPosition();
+	
+	Size getSize();
 }

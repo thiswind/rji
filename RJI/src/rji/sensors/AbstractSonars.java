@@ -10,11 +10,9 @@ package rji.sensors;
 public abstract class AbstractSonars implements Sonars {
 	
 	protected double[] ranges;
-	protected double hitRange;
 	
 	public AbstractSonars(int num, double hitRange) {
 		this.ranges = new double[num];
-		this.hitRange = hitRange;
 	}
 	
 	/* (non-Javadoc)
@@ -25,25 +23,12 @@ public abstract class AbstractSonars implements Sonars {
 	}
 	
 	/* (non-Javadoc)
-	 * @see rji.sensors.Sonars#hasHit(int)
-	 */
-	public boolean hasHit(int num) {
-		return this.getMeasurement(num) < this.hitRange;
-	}
-	
-	/* (non-Javadoc)
-	 * @see rji.sensors.Sonars#getHitRange(int)
-	 */
-	public double getHitRange(int num) {
-		return this.hitRange;
-	}
-	
-	/* (non-Javadoc)
 	 * @see rji.sensors.Sonars#oneHasHit()
 	 */
-	public boolean oneHasHit() {
-		for (int i=0; i<this.getNumSonars(); i++) {
-			if (this.hasHit(i)) {
+	public boolean oneHasHit(double hitDist) {
+		int size = this.ranges.length;
+		for (int i=0; i<size; i++) {
+			if (this.getMeasurement(i) < hitDist) {
 				return true;
 			}
 		}

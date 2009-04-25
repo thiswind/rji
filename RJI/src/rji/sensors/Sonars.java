@@ -11,14 +11,14 @@ public interface Sonars {
 
 	double getMeasurement(int num);
 
-	boolean hasHit(int num);
-
-	double getHitRange(int num);
-
-	boolean oneHasHit();
+	boolean oneHasHit(double hitDist);
 
 	int getNumSonars();
 
 	double getAngle(int num);
+	
+	double getSwingOffset(int num);
+	
+	double getDistFrontCenter(int num);
 
 }
